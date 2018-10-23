@@ -20,9 +20,9 @@ def change_content(board, pos, content):
 
 
 def get_content(board, pos):
-    if pos_l(pos) < 0 or pos_l(pos) > len(board) - 1 or pos_c(pos) < 0 or pos_c(pos) > len(board[pos_l(pos)]) - 1:
-        raise ValueError("out of bounds")
-    return get_pos(board, pos)
+    if not (0 <= pos_l(pos) < len(board) and 0 <= pos_c(pos) < len(board[pos_l(pos)])):
+        raise ValueError("Position out of bounds.")
+    return board[pos_l(pos)][pos_c(pos)]
 
 def check_move(board, pos, func):
     try:
@@ -63,33 +63,33 @@ def board_perform_move(board, move):
 
 
 # TAI content
-def c_peg ():
+def c_peg():
     return "O"
 
-def c_empty ():
+def c_empty():
     return "_"
 
-def c_blocked ():
+def c_blocked():
     return "X"
 
-def is_empty (e):
+def is_empty(e):
     return e == c_empty()
 
-def is_peg (e):
+def is_peg(e):
     return e == c_peg()
 
-def is_blocked (e):
+def is_blocked(e):
     return e == c_blocked()
 
 # TAI pos
 # Tuplo (l, c)
-def make_pos (l, c):
+def make_pos(l, c):
     return (l, c)
 
-def pos_l (pos):
+def pos_l(pos):
     return pos[0]
 
-def pos_c (pos):
+def pos_c(pos):
     return pos[1]
 
 def up_pos(pos):
@@ -106,13 +106,13 @@ def right_pos(pos):
 
 # TAI move
 # Lista [p_initial, p_final]
-def make_move (i, f):
+def make_move(i, f):
     return [i, f]
 
-def move_initial (move):
+def move_initial(move):
     return move[0]
 
-def move_final (move):
+def move_final(move):
     return move[1]
 
 def middle_pos(move):
@@ -122,7 +122,7 @@ def middle_pos(move):
         else:
             return left_pos(move_initial(move))
     else:
-        if pos_c(move_initial(move)) < pos_c(move_final(move)):
-            return up_pos(move_initial(move))
-        else:
+        if pos_l(move_initial(move)) < pos_l(move_final(move)):
             return down_pos(move_initial(move))
+        else:
+            return up_pos(move_initial(move))
