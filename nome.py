@@ -1,5 +1,12 @@
 #python3 -c 'from nome import *; print(oi())'
 
+class sol_state:
+    def __init__(self, board):
+        self.board = board              #slot?
+
+    def __lt__(self, other):
+        pass
+    
 # TAI board
 def is_board(board):
     if not isinstance(board, list):
