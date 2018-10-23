@@ -15,7 +15,8 @@ def is_board(board):
 def get_pos(board, pos):
     return board[pos_l(pos)][pos_c(pos)]
 
-#def change_content(board, pos, content):
+def change_content(board, pos, content):
+    board[pos_l(pos)][pos_c(pos)] = content
 
 
 def get_content(board, pos):
@@ -51,6 +52,14 @@ def board_moves(board):
             except ValueError:
                 continue
     return moves
+
+def board_perform_move(board, move):
+    newboard = board.copy()
+    change_content(newboard, move_initial(move), c_empty())
+    change_content(newboard, middle_pos(move), c_empty())
+    change_content(newboard, move_final(move), c_peg())
+    return newboard
+
 
 
 # TAI content
