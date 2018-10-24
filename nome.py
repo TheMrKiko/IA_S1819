@@ -1,8 +1,10 @@
-#python3 -c 'from nome import *; print(oi())'
+a = [["_","O","O","O","_"], ["O","_","O","_","O"], ["_","O","_","O","_"],["O","_","O","_","_"], ["_","O","_","_","_"]]
 
 class sol_state:
+    __slots__ = ["board"]
+
     def __init__(self, board):
-        self.board = board              #slot?
+        self.board = board
 
     def __lt__(self, other):
         pass
@@ -42,7 +44,7 @@ def check_move(board, pos, func):
 
 def check_pos_moves(board, pos):
     moves = []
-    if not is_peg(get_content(board, pos)): #falta um try aqui
+    if not is_peg(get_content(board, pos)):
         raise ValueError("not a peg")
     for f in [up_pos, down_pos, left_pos, right_pos]:
         m = check_move(board, pos, f)
@@ -60,8 +62,14 @@ def board_moves(board):
                 continue
     return moves
 
+def copy_board(board):
+    boardcopy = []
+    for l in board:
+        boardcopy += [l.copy()]
+    return boardcopy
+
 def board_perform_move(board, move):
-    newboard = board.copy()
+    newboard = copy_board(board)
     change_content(newboard, move_initial(move), c_empty())
     change_content(newboard, middle_pos(move), c_empty())
     change_content(newboard, move_final(move), c_peg())
