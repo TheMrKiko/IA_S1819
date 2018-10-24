@@ -16,31 +16,30 @@ class solitaire(Problem):
     A solution cannot have more than 1 peg left on the board."""
 
     def __init__(self, board):
-        super().__init__(self)
-        self.board = board
+        super().__init__(self, board)
 
     def actions(self, state):
         """Return the actions that can be executed in the given
         state. The result would typically be a list, but if there are
         many actions, consider yielding them one at a time in an
         iterator, rather than building them all at once."""
-        raise NotImplementedError
+        return board_moves(state.board)
 
     def result(self, state, action):
         """Return the state that results from executing the given
         action in the given state. The action must be one of
         self.actions(state)."""
-        raise NotImplementedError
+        if action in self.actions(state):
+            return sol_state(board_perform_move(state.board, action))
+        else:
+            raise ValueError("Action not possible.")
 
     def goal_test(self, state):
         """Return True if the state is a goal. The default method compares the
         state to self.goal or checks for state in self.goal if it is a
         list, as specified in the constructor. Override this method if
         checking against a single self.goal is not enough."""
-        # if isinstance(self.goal, list):
-        #     return is_in(state, self.goal)
-        # else:
-        #     return state == self.goal
+        return count_content(state.board, c_peg) == 1
 
     def path_cost(self, c, state1, action, state2):
         """Return the cost of a solution path that arrives at state2 from
@@ -52,6 +51,7 @@ class solitaire(Problem):
 
     def h(self, node):
         """Needed for informed search."""
+        #something node.state.board
 
     
 # TAI board
