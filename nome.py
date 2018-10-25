@@ -1,6 +1,8 @@
-from utilities.search import (Problem)
+# 86400 Daniel Fernandes | 86416 Francisco Sousa | Grupo 74
+#from utilities.search import (Problem)
+from search import * #<-- PARA SUBEMTER (comentar linha acima)
 
-a = [["_","O","O","O","_"], ["O","_","O","_","O"], ["_","O","_","O","_"],["O","_","O","_","_"], ["_","O","_","_","_"]]
+#a = [["_","O","O","O","_"], ["O","_","O","_","O"], ["_","O","_","O","_"],["O","_","O","_","_"], ["_","O","_","_","_"]]
 
 class sol_state:
     __slots__ = ["board"]
@@ -9,14 +11,14 @@ class sol_state:
         self.board = board
 
     def __lt__(self, other):
-        return count_content(self, c_empty) < count_content(other, c_empty)
+        return count_content(self.board, c_empty()) < count_content(other.board, c_empty())
 
 class solitaire(Problem):
     """Models a Solitaire problem as a satisfaction problem.
     A solution cannot have more than 1 peg left on the board."""
 
     def __init__(self, board):
-        super().__init__(self, board)
+        Problem.__init__(self, sol_state(board))
 
     def actions(self, state):
         """Return the actions that can be executed in the given
@@ -39,7 +41,7 @@ class solitaire(Problem):
         state to self.goal or checks for state in self.goal if it is a
         list, as specified in the constructor. Override this method if
         checking against a single self.goal is not enough."""
-        return count_content(state.board, c_peg) == 1
+        return count_content(state.board, c_peg()) == 1
 
     def path_cost(self, c, state1, action, state2):
         """Return the cost of a solution path that arrives at state2 from
@@ -51,6 +53,7 @@ class solitaire(Problem):
 
     def h(self, node):
         """Needed for informed search."""
+        return count_content(node.state.board, c_empty())
         #something node.state.board
 
     
@@ -65,9 +68,6 @@ def is_board(board):
             if not (is_empty(e) or is_peg(e) or is_blocked(e)):
                 return False
     return True
-
-def get_pos(board, pos):
-    return board[pos_l(pos)][pos_c(pos)]
 
 def change_content(board, pos, content):
     board[pos_l(pos)][pos_c(pos)] = content
@@ -125,7 +125,7 @@ def count_content(board, content):
     if is_board(board):
         for l in range(len(board)):
             for c in range(len(board[l])):
-                if get_pos(board, make_pos(l, c)) == content:
+                if get_content(board, make_pos(l, c)) == content:
                     count += 1
     else:
         raise ValueError("Not a board.")
