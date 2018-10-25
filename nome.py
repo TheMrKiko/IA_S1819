@@ -51,11 +51,12 @@ class solitaire(Problem):
         and action. The default method costs 1 for every step in the path."""
         return c + 1
 
-    def h(self, node):
+    def h(self, node):  # Só greedy e A* usam h
         """Needed for informed search."""
-        return count_content(node.state.board, c_empty())
-        #something node.state.board
-
+        #return count_content(node.state.board, c_empty())                                #29 no mooshas; 30, 31, 32 com TLE
+        #return board_moves(node.state.board)                                             #30 no mooshas;     31, 32 com RTE
+        #return count_content(node.state.board, c_empty()) + board_moves(node.state.board)#29 no mooshas; 30, 31, 32 com RTE
+        #return board_moves(node.state.board) / count_content(node.state.board, c_peg())  #29 no mooshas; 30, 31, 32 com RTE
     
 # TAI board
 def is_board(board):
