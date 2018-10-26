@@ -8,10 +8,9 @@
 \begin{document}
 \maketitle
 
-\section{Introdução}
-Nesta primeira parte do projeto, foi-nos pedido um programa em Python que resolva
-diferentes puzzles de uma variante do jogo Solitaire. O objectivo é encontrar uma sequência de jogadas,
-independentemente do tamanho do tabuleiro e da sua configuração inicial.
+\abstract{Nesta primeira parte do projeto, foi-nos pedido um programa em Python que resolva
+	diferentes puzzles de uma variante do jogo Solitaire. O objectivo é encontrar uma sequência de jogadas,
+	independentemente do tamanho do tabuleiro e da sua configuração inicial.}
 
 Irá ser realizada uma análise para os seguintes problemas dados:
 
@@ -47,46 +46,62 @@ Irá ser realizada uma análise para os seguintes problemas dados:
 	\end{verbatim}
 \end{multicols}
 
+
 \section{Tempo de Execução}
+
+A tabela \ref{te} apresenta os dados para este teste.
 
 \begin{table}[ht]
 	\centering
-	\begin{tabular}{c|c|c|c}
-	\multicolumn{1}{r|}{} & \textbf{Problema 1} & \textbf{Problema 2} & \textbf{Problema 3} \\ \hline
-	\textbf{DFS}          & 8987                                                                 & 6776                                                               & 45                                                             \\ \hline
-	\textbf{Greedy}       & 6544                                                                 & 9876                                                               & 1456                                                           \\ \hline
-	\textbf{A*}           & 879                                                                  & 87                                                                 & 23                                                            
+	\begin{tabular}{c|c|c|c|c}
+		\multicolumn{1}{r|}{} & \textbf{Problema 1} & \textbf{Problema 2} & \textbf{Problema 3} & \textbf{Problema 4} \\ \hline
+		\textbf{Greedy} & 0.005665  & 0.021978 & 1.768940  & 5.182601 \\ \hline
+		\textbf{A*} & 0.009196 & 0.124620  & 1.741809 & 1.480939 \\\hline
+		\textbf{DFS}  & 0.004827 & 0.811957  & 8.112057  & -
 	\end{tabular}
-	\caption{Tempo de execução para os três problemas}
+	\caption{Tempo de execução para os quatro problemas}
 	\label{te}
 \end{table}
 
+A DFS faz o tabuleiro menor mais rapidamente porque os outros
+gastam muito tempo a expandir nós desnecessários. No entanto,
+não consegue resolver o último problema em tempo útil porque é
+muito complexo.
+
 \section{Nós Expandidos}
+
+A tabela \ref{ne} apresenta os dados para este teste.
 
 \begin{table}[ht]
 	\centering
-	\begin{tabular}{c|c|c|c}
-	\multicolumn{1}{r|}{} & \textbf{Problema 1} & \textbf{Problema 2} & \textbf{Problema 3} \\ \hline
-	\textbf{DFS}          & 8987                                                                 & 6776                                                               & 45                                                             \\ \hline
-	\textbf{Greedy}       & 6544                                                                 & 9876                                                               & 1456                                                           \\ \hline
-	\textbf{A*}           & 879                                                                  & 87                                                                 & 23                                                            
+	\begin{tabular}{c|c|c|c|c}
+		\multicolumn{1}{r|}{} & \textbf{Problema 1} & \textbf{Problema 2} & \textbf{Problema 3} & \textbf{Problema 4} \\ \hline
+		\textbf{Greedy} & 10 & 21 & 5803 & 14360 \\ \hline
+		\textbf{A*} & 22 & 100 & 7884 & 14680 \\ \hline
+		\textbf{DFS} & 32 & 6086 & 61520 & -
 	\end{tabular}
-	\caption{Nós expandidos para os três problemas}
+	\caption{Nós expandidos para os quatro problemas}
 	\label{ne}
 \end{table}
 
+Os nós expandidos aproximam-se dos nós gerados porque a heurística pode
+não ser a melhor.
+
 \section{Nós Gerados}
+A tabela \ref{ng} apresenta os dados para este teste.
 
 \begin{table}[ht]
 	\centering
-	\begin{tabular}{c|c|c|c}
-	\multicolumn{1}{r|}{} & \textbf{Problema 1} & \textbf{Problema 2} & \textbf{Problema 3} \\ \hline
-	\textbf{DFS}          & 8987                                                                 & 6776                                                               & 45                                                             \\ \hline
-	\textbf{Greedy}       & 6544                                                                 & 9876                                                               & 1456                                                           \\ \hline
-	\textbf{A*}           & 879                                                                  & 87                                                                 & 23                                                            
+	\begin{tabular}{c|c|c|c|c}
+		\multicolumn{1}{r|}{} & \textbf{Problema 1} & \textbf{Problema 2} & \textbf{Problema 3} & \textbf{Problema 4} \\ \hline
+		\textbf{Greedy} & 12 & 23 & 5805 & 14362 \\ \hline
+		\textbf{A*} & 26 & 104 & 7888 & 14684 \\ \hline
+		\textbf{DFS} & 37 & 6091 & 61525 & -
 	\end{tabular}
-	\caption{Nós gerados para os três problemas}
+	\caption{Nós gerados para os quatro problemas}
 	\label{ng}
 \end{table}
+
+Os nós gerados são muito mais para a DFS do que para os restantes algoritmos.
 
 \end{document} 
