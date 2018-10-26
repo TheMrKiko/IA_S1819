@@ -53,11 +53,36 @@ class solitaire(Problem):
 
     def h(self, node):  # Só greedy e A* usam h
         """Needed for informed search."""
-        #return count_content(node.state.board, c_empty())                                #29 no mooshas; 30, 31, 32 com TLE
-        #return board_moves(node.state.board)                                             #30 no mooshas;     31, 32 com RTE
-        #return count_content(node.state.board, c_empty()) + board_moves(node.state.board)#29 no mooshas; 30, 31, 32 com RTE
-        #return board_moves(node.state.board) / count_content(node.state.board, c_peg())  #29 no mooshas; 30, 31, 32 com RTE
-    
+        #return count_content(node.state.board, c_peg())                                  #29 no mooshas; 30 MLE; 31, 32 TLE
+        #if (len(board_moves(node.state.board))):
+        #    return count_content(node.state.board, c_peg()) / len(board_moves(node.state.board))
+        #else:
+        #    return count_content(node.state.board, c_peg())                              #29; TLM
+        #return count_content(node.state.board, c_peg()) - len(board_moves(node.state.board))          #30 TLE
+        #return count_content(node.state.board, c_peg()) - len(movable_pegs(node.state.board))         #30 TLE
+        return 2 * count_content(node.state.board, c_peg()) - len(movable_pegs(node.state.board))      #29 RTE
+        
+        
+def movable_pegs(board):
+    moves = board_moves(board)
+    res = []
+    for m in moves:
+        if move_initial(m) not in res:
+            res += [move_final(m)]
+    return res
+
+
+def isolated_pegs(board):
+    moves = board_moves(board)
+    res = []
+    for m in moves:
+        if move_final(m) not in res:
+            res += [move_final(m)]
+    return res
+
+
+
+
 # TAI board
 def is_board(board):
     if not isinstance(board, list):
