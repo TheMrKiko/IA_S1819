@@ -1,8 +1,6 @@
 # 86400 Daniel Fernandes | 86416 Francisco Sousa | Grupo 74
-from utilities.search import *
-#from search import * #<-- PARA SUBEMTER (comentar linha acima)
 
-#a = [["_","O","O","O","_"], ["O","_","O","_","O"], ["_","O","_","O","_"],["O","_","O","_","_"], ["_","O","_","_","_"]]
+from search import *
 
 class sol_state:
     __slots__ = ["board"]
@@ -51,7 +49,7 @@ class solitaire(Problem):
         and action. The default method costs 1 for every step in the path."""
         return c + 1
 
-    def h(self, node):  # Só greedy e A* usam h
+    def h(self, node):
         """Needed for informed search."""
         return 2 * count_content(node.state.board, c_peg()) - len(movable_pegs(node.state.board))
         
@@ -72,8 +70,6 @@ def isolated_pegs(board):
         if move_final(m) not in res:
             res += [move_final(m)]
     return res
-
-
 
 
 # TAI board
