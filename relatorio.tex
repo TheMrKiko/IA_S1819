@@ -1,0 +1,92 @@
+\documentclass[12pt,a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[portuguese]{babel}
+\usepackage{graphicx, hyperref, verbatim, multicol}
+
+\author{Grupo 74 \and Daniel Fernandes 86400 \& Francisco Sousa 86416}
+\title{Relatório 1ª Parte Projeto de IA}
+\begin{document}
+\maketitle
+
+\section{Introdução}
+Nesta primeira parte do projeto, foi-nos pedido um programa em Python que resolva
+diferentes puzzles de uma variante do jogo Solitaire. O objectivo é encontrar uma sequência de jogadas,
+independentemente do tamanho do tabuleiro e da sua configuração inicial.
+
+Irá ser realizada uma análise para os seguintes problemas dados:
+
+\begin{multicols}{2}
+	\paragraph{Problema 1 (5x5)}
+	\begin{verbatim}
+		[["_","O","O","O","_"],
+		["O","_","O","_","O"],
+		["_","O","_","O","_"],
+		["O","_","O","_","_"],
+		["_","O","_","_","_"]]
+	\end{verbatim}
+	\paragraph{Problema 2 (4x4)}
+	\begin{verbatim}
+		[["O","O","O","X"],
+		["O","O","O","O"],
+		["O","_","O","O"],
+		["O","O","O","O"]]
+	\end{verbatim}
+	\paragraph{Problema 3 (4x5)}
+	\begin{verbatim}
+		[["O","O","O","X","X"],
+		["O","O","O","O","O"],
+		["O","_","O","_","O"],
+		["O","O","O","O","O"]]
+	\end{verbatim}
+	\paragraph{Problema 4 (4x6)}
+	\begin{verbatim}
+	[["O","O","O","X","X","X"],
+	["O","_","O","O","O","O"],
+	["O","O","O","O","O","O"],
+	["O","O","O","O","O","O"]]
+	\end{verbatim}
+\end{multicols}
+
+\section{Tempo de Execução}
+
+\begin{table}[ht]
+	\centering
+	\begin{tabular}{c|c|c|c}
+	\multicolumn{1}{r|}{} & \textbf{Problema 1} & \textbf{Problema 2} & \textbf{Problema 3} \\ \hline
+	\textbf{DFS}          & 8987                                                                 & 6776                                                               & 45                                                             \\ \hline
+	\textbf{Greedy}       & 6544                                                                 & 9876                                                               & 1456                                                           \\ \hline
+	\textbf{A*}           & 879                                                                  & 87                                                                 & 23                                                            
+	\end{tabular}
+	\caption{Tempo de execução para os três problemas}
+	\label{te}
+\end{table}
+
+\section{Nós Expandidos}
+
+\begin{table}[ht]
+	\centering
+	\begin{tabular}{c|c|c|c}
+	\multicolumn{1}{r|}{} & \textbf{Problema 1} & \textbf{Problema 2} & \textbf{Problema 3} \\ \hline
+	\textbf{DFS}          & 8987                                                                 & 6776                                                               & 45                                                             \\ \hline
+	\textbf{Greedy}       & 6544                                                                 & 9876                                                               & 1456                                                           \\ \hline
+	\textbf{A*}           & 879                                                                  & 87                                                                 & 23                                                            
+	\end{tabular}
+	\caption{Nós expandidos para os três problemas}
+	\label{ne}
+\end{table}
+
+\section{Nós Gerados}
+
+\begin{table}[ht]
+	\centering
+	\begin{tabular}{c|c|c|c}
+	\multicolumn{1}{r|}{} & \textbf{Problema 1} & \textbf{Problema 2} & \textbf{Problema 3} \\ \hline
+	\textbf{DFS}          & 8987                                                                 & 6776                                                               & 45                                                             \\ \hline
+	\textbf{Greedy}       & 6544                                                                 & 9876                                                               & 1456                                                           \\ \hline
+	\textbf{A*}           & 879                                                                  & 87                                                                 & 23                                                            
+	\end{tabular}
+	\caption{Nós gerados para os três problemas}
+	\label{ng}
+\end{table}
+
+\end{document} 
