@@ -16,7 +16,7 @@ funcoes_a_testar = ('faz_pos', 'linha_pos', 'coluna_pos', 'e_pos', 'pos_iguais',
 
 
 ################ OBTEM LISTA DE FICHEIROS DE TESTES #############
-nome_directoria_testes = 'IA201819-Solitaire-Tests/'
+nome_directoria_testes = 'Testes Publicos/'
 dir_testes = os.listdir(path = nome_directoria_testes)
 # guarda so os ficheiros .in
 #dir_testes = [f[: -3] for f in dir_testes if f[len(f) - 3 : ] == '.in']
