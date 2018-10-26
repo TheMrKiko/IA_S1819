@@ -1,6 +1,6 @@
 # 86400 Daniel Fernandes | 86416 Francisco Sousa | Grupo 74
-#from utilities.search import (Problem)
-from search import * #<-- PARA SUBEMTER (comentar linha acima)
+from utilities.search import *
+#from search import * #<-- PARA SUBEMTER (comentar linha acima)
 
 #a = [["_","O","O","O","_"], ["O","_","O","_","O"], ["_","O","_","O","_"],["O","_","O","_","_"], ["_","O","_","_","_"]]
 
@@ -53,14 +53,7 @@ class solitaire(Problem):
 
     def h(self, node):  # Só greedy e A* usam h
         """Needed for informed search."""
-        #return count_content(node.state.board, c_peg())                                  #29 no mooshas; 30 MLE; 31, 32 TLE
-        #if (len(board_moves(node.state.board))):
-        #    return count_content(node.state.board, c_peg()) / len(board_moves(node.state.board))
-        #else:
-        #    return count_content(node.state.board, c_peg())                              #29; TLM
-        #return count_content(node.state.board, c_peg()) - len(board_moves(node.state.board))          #30 TLE
-        #return count_content(node.state.board, c_peg()) - len(movable_pegs(node.state.board))         #30 TLE
-        return 2 * count_content(node.state.board, c_peg()) - len(movable_pegs(node.state.board))      #29 RTE
+        return 2 * count_content(node.state.board, c_peg()) - len(movable_pegs(node.state.board))
         
         
 def movable_pegs(board):
